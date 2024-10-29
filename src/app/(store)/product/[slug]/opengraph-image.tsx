@@ -51,7 +51,7 @@ export default async function Image(props: { params: Promise<{ slug: string }> }
 					<p tw="font-black text-5xl mb-0">{product.name}</p>
 					<p tw="font-normal text-neutral-800 mt-0 text-3xl">
 						{formatMoney({
-							amount: product.default_price.unit_amount ?? 0,
+							amount: product.default_price?.unit_amount ?? 0,
 							currency: product.default_price.currency,
 							locale,
 						})}
