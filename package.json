@@ -11,9 +11,7 @@
 		"start": "next start",
 		"lint": "pnpm biome check --write",
 		"test": "vitest",
-		"prepare": "husky",
-		"docker:build": "docker build -t yournextstore .",
-		"docker:run": "docker run -d -p 3000:3000 yournextstore"
+		"prepare": "husky"
 	},
 	"dependencies": {
 		"@next/mdx": "15.0.2-canary.9",
