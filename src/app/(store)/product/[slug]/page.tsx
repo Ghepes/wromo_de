@@ -1,5 +1,4 @@
 import { publicUrl } from "@/env.mjs";
-import { getLocale, getTranslations } from "@/i18n/server";
 import { getRecommendedProducts } from "@/lib/search/trieve";
 import { cn, deslugify, formatMoney, formatProductName } from "@/lib/utils";
 import type { TrieveProductMetadata } from "@/scripts/upload-trieve";
@@ -16,6 +15,7 @@ import {
 } from "@/ui/shadcn/breadcrumb";
 import { YnsLink } from "@/ui/yns-link";
 import * as Commerce from "commerce-kit";
+import { getLocale, getTranslations } from "next-intl/server";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next/types";

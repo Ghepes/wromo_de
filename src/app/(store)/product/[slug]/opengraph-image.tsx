@@ -1,12 +1,14 @@
-import { getLocale } from "@/i18n/server";
 import { formatMoney } from "@/lib/utils";
 import { accountGet, productGet } from "commerce-kit";
+import { getLocale } from "next-intl/server";
 import { ImageResponse } from "next/og";
 
 export const size = {
 	width: 1200,
 	height: 630,
 };
+
+export const runtime = "edge";
 
 export const contentType = "image/png";
 export const alt = "";
@@ -51,7 +53,7 @@ export default async function Image(props: { params: Promise<{ slug: string }> }
 					<p tw="font-black text-5xl mb-0">{product.name}</p>
 					<p tw="font-normal text-neutral-800 mt-0 text-3xl">
 						{formatMoney({
-							amount: product.default_price?.unit_amount ?? 0,
+							amount: product.default_price.unit_amount ?? 0,
 							currency: product.default_price.currency,
 							locale,
 						})}

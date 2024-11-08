@@ -4,6 +4,7 @@ import { Button } from "@/ui/shadcn/button";
 import { useElements } from "@stripe/react-stripe-js";
 import clsx from "clsx";
 import { Loader2 } from "lucide-react";
+import { useLocale } from "next-intl";
 import { useRouter } from "next/navigation";
 import { useRef } from "react";
 import { useFormStatus } from "react-dom";
@@ -100,18 +101,17 @@ export const CartItemLineTotal = ({
 	quantity,
 	unitAmount,
 	productId,
-	locale,
 }: {
 	unitAmount: number;
 	quantity: number;
 	currency: string;
 	productId: string;
-	locale: string;
 }) => {
 	const { pending, data: formData } = useFormStatus();
 	const increaseQuantity = formData?.get("increaseQuantity")?.toString();
 	const decreaseQuantity = formData?.get("decreaseQuantity")?.toString();
 	const isPending = pending && (increaseQuantity === productId || decreaseQuantity === productId);
+	const locale = useLocale();
 
 	return (
 		<span
@@ -129,12 +129,9 @@ export const CartItemLineTotal = ({
 	);
 };
 
-export const CartAmountWithSpinner = ({
-	total,
-	currency,
-	locale,
-}: { total: number; currency: string; locale: string }) => {
+export const CartAmountWithSpinner = ({ total, currency }: { total: number; currency: string }) => {
 	const { pending } = useFormStatus();
+	const locale = useLocale();
 
 	return (
 		<span

@@ -1,6 +1,6 @@
 "use client";
 
-import { useTranslations } from "@/i18n/client";
+import { useTranslations } from "next-intl";
 
 export default function GlobalError({
 	error,

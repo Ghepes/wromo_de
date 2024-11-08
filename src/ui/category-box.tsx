@@ -1,16 +1,16 @@
-import { getTranslations } from "@/i18n/server";
 import { deslugify } from "@/lib/utils";
 import { YnsLink } from "@/ui/yns-link";
+import { useTranslations } from "next-intl";
 import Image, { type ImageProps } from "next/image";
 
-export async function CategoryBox({
+export function CategoryBox({
 	categorySlug,
 	src,
 }: {
 	categorySlug: string;
 	src: ImageProps["src"];
 }) {
-	const t = await getTranslations("Global.actions");
+	const t = useTranslations("Global.actions");
 
 	return (
 		<YnsLink href={`/category/${categorySlug}`} className="group relative">

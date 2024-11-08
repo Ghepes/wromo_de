@@ -1,21 +1,17 @@
-import { getTranslations } from "@/i18n/server";
+import { CATEGORIES } from "@/app/config.yns";
+import { deslugify } from "@/lib/utils";
 import { Newsletter } from "@/ui/footer/newsletter.client";
 import { YnsLink } from "@/ui/yns-link";
+import { getTranslations } from "next-intl/server";
 import type { SVGAttributes } from "react";
 
 const sections = [
 	{
 		header: "Products",
-		links: [
-			{
-				label: "Apparel",
-				href: "/category/apparel",
-			},
-			{
-				label: "Accessories",
-				href: "/category/accessories",
-			},
-		],
+		links: CATEGORIES.map(({ slug }) => ({
+			label: deslugify(slug),
+			href: `/category/${slug}`,
+		})),
 	},
 	{
 		header: "Support",

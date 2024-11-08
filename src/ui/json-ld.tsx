@@ -21,7 +21,7 @@ export const mappedProductToJsonLd = (product: Commerce.MappedProduct): WithCont
 		offers: {
 			"@type": "Offer",
 			price: getDecimalFromStripeAmount({
-				amount: product.default_price?.unit_amount ?? 0,
+				amount: product.default_price.unit_amount ?? 0,
 				currency: product.default_price.currency,
 			}),
 			priceCurrency: product.default_price.currency,

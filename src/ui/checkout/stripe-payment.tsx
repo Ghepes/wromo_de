@@ -1,7 +1,6 @@
 "use client";
 
 import { clearCartCookieAction } from "@/actions/cart-actions";
-import { useTranslations } from "@/i18n/client";
 import { useDebouncedValue } from "@/lib/hooks";
 import { saveBillingAddressAction, saveShippingRateAction } from "@/ui/checkout/checkout-actions";
 import { type AddressSchema, getAddressSchema } from "@/ui/checkout/checkout-form-schema";
@@ -23,6 +22,7 @@ import {
 } from "@stripe/react-stripe-js";
 import type * as Commerce from "commerce-kit";
 import { AlertCircle, Loader2 } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
 import { type ChangeEvent, type FormEventHandler, useEffect, useState, useTransition } from "react";
 
@@ -30,19 +30,16 @@ export const StripePayment = ({
 	shippingRateId,
 	shippingRates,
 	allProductsDigital,
-	locale,
 }: {
 	shippingRateId?: string | null;
 	shippingRates: Commerce.MappedShippingRate[];
 	allProductsDigital: boolean;
-	locale: string;
 }) => {
 	return (
 		<PaymentForm
 			shippingRates={shippingRates}
 			cartShippingRateId={shippingRateId ?? null}
 			allProductsDigital={allProductsDigital}
-			locale={locale}
 		/>
 	);
 };
@@ -51,12 +48,10 @@ const PaymentForm = ({
 	shippingRates,
 	cartShippingRateId,
 	allProductsDigital,
-	locale,
 }: {
 	shippingRates: Commerce.MappedShippingRate[];
 	cartShippingRateId: string | null;
 	allProductsDigital: boolean;
-	locale: string;
 }) => {
 	const t = useTranslations("/cart.page.stripePayment");
 
@@ -255,7 +250,6 @@ const PaymentForm = ({
 
 			{readyToRender && !allProductsDigital && (
 				<ShippingRatesSection
-					locale={locale}
 					onChange={(value) => {
 						transition(async () => {
 							setShippingRateId(value);
